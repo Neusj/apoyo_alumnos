@@ -26,6 +26,8 @@ SECRET_KEY = '3$18jc_0(1!hp$i(yykt)u%izy6bdtcr4q93531r*7zxb3lb2('
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['jneus.pythonanywhere.com']
+
 
 
 # Application definition
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -74,9 +78,25 @@ WSGI_APPLICATION = 'apoyo_alumnos.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
+    #  'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'jneus$apoyo_alumnos',
+    #     'USER': 'jneus',
+    #     'PASSWORD': 'jenv18163',
+    #     'HOST': 'jneus.mysql.pythonanywhere-services.com',
+    #     'PORT': '3306',
+
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bakenem4_test_deploy',
+        'USER': 'bakenem4_jneus',
+        'PASSWORD': 'jenv18163',
+        'HOST': '108.167.149.245', 
+        'PORT': '3306',  
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
 
