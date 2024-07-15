@@ -1,3 +1,14 @@
-<h1>Bienvenido</h1>
+{% extends 'base.html' %}
 
-{{message}}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Bienvenido</h1>
+        <p>{{ message }}</p>
+        <div class="links">
+            <a href="{% url 'login' %}">Iniciar Sesión</a>
+        </div>
+    </div>
+{% endblock %}

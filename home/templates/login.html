@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Iniciar Sesión</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+
+    <div class="login-container">
+        <h3>Iniciar Sesión</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="links">
+            <a href="{% url 'home' %}" class="btn-secondary">Volver</a>
+        </div>
+    </div>
+
+{% endblock %}
+

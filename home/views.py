@@ -8,7 +8,13 @@ from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPassw
 
 class Home(views.View):
     def get(self, request):
-        return render(request, 'home.html', {'message': 'Bienvenido a la aplicación!'})
+        return render(
+            request,
+            'home.html',
+            {
+                'message': 'Nueva plataforma de apoyo al estudiante'
+            }
+        )
 
 
 class SignUpView(CreateView):
@@ -18,7 +24,7 @@ class SignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('home_view')
+        return redirect('home')
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
