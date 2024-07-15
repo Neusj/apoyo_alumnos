@@ -15,6 +15,7 @@ nav {
     top: 0;
     left: 0;
     z-index: 1000;
+    margin-bottom: 20px;
 }
 
 nav ul {
@@ -54,6 +55,7 @@ nav ul li a:hover {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 h1, h2 {
@@ -139,4 +141,14 @@ input[type="text"], input[type="password"], input[type="email"] {
     color: red;
     font-size: 0.9em;
     margin-top: 5px;
+}
+
+footer {
+    background-color: #266195;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }

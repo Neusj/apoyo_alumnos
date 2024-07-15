@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
 
-    path('signup/', SignUpView.as_view(), name='signup'),
+    path('crear_usuario/', SignUpView.as_view(), name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
