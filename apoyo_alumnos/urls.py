@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from home.views import Home
+from home.views import CustomLoginView, CustomPasswordResetView, Home, SignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home_view'),
+
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
 ]
