@@ -8,11 +8,19 @@ from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPassw
 
 class Home(views.View):
     def get(self, request):
+        user = request.user
+        message = 'Nueva plataforma de apoyo al estudiante'
+        is_login = False
+        if user.is_authenticated:
+            message = f'¡Hola! {user.username}'
+            is_login = True
+
         return render(
             request,
             'home.html',
             {
-                'message': 'Nueva plataforma de apoyo al estudiante'
+                'message': message,
+                'is_login': is_login
             }
         )
 

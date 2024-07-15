@@ -3,12 +3,18 @@
 {% load static %}
 
 {% block content %}
+        {% block nav %}
+            {% include 'nav.html' %}
+
+        {% endblock %}
 
     <div class="container">
         <h1>Bienvenido</h1>
         <p>{{ message }}</p>
         <div class="links">
-            <a href="{% url 'login' %}">Iniciar Sesión</a>
+            {% if not is_login %}
+                <a href="{% url 'login' %}">Iniciar Sesión</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

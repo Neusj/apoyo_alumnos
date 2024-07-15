@@ -7,19 +7,18 @@
 
 {% block content %}
 
-    <div class="login-container">
-        <h3>Iniciar Sesión</h3>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.as_p }}
-            </div>
-            <button type="submit" class="btn">Login</button>
-        </form>
-        <div class="links">
-            <a href="{% url 'home' %}" class="btn-secondary">Volver</a>
+<div class="login-container">
+    <h3>Iniciar Sesión</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
         </div>
+        <button type="submit" class="btn">Login</button>
+    </form>
+    <div class="links">
+        <a href="{% url 'home' %}" class="btn-secondary">Volver</a>
     </div>
-
+</div>
 {% endblock %}
 
