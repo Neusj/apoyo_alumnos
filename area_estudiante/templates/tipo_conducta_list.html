@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Cursos{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    <h2>Lista de Tipos de Conduta</h2>
+    <a href="{% url 'tipo_conducta_create' %}" class="btn btn-primary">Crear Conducta</a>
+    <div class="course-list">
+        {% for conducta in tipo_conductas %}
+            <div class="course-item">
+                <span class="course-details">{{ conducta.nombre }}</span>
+                <div class="course-actions">
+                    <a href="{% url 'tipo_conducta_update' conducta.pk %}" class="btn-primary">Editar</a>
+                    <a href="{% url 'tipo_conducta_delete' conducta.pk %}" class="btn-danger">Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

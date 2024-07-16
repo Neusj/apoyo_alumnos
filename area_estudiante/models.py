@@ -8,10 +8,16 @@ class Curso(models.Model):
     año = models.PositiveIntegerField()
     seccion = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.nombre
+
 
 class TipoConducta(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
+
+    def __str__(self):
+        return self.nombre
 
 
 class Estudiante(models.Model):
@@ -22,3 +28,6 @@ class Estudiante(models.Model):
     id_curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     apoderado = models.ForeignKey(Apoderado, on_delete=models.CASCADE)
     tipo_conducta = models.ForeignKey(TipoConducta, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.rut} {self.nombre} {self.primer_apellido}'

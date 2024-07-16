@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Cursos{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    <h2>Lista de Estudiantes</h2>
+    <a href="{% url 'estudiante_create' %}" class="btn btn-primary">Crear Estudiante</a>
+    <div class="course-list">
+        {% for estudiante in estudiantes %}
+            <div class="course-item">
+                <span class="course-details">{{ estudiante.nombre }}</span>
+                <div class="course-actions">
+                    <a href="{% url 'estudiante_update' estudiante.pk %}" class="btn-primary">Editar</a>
+                    <a href="{% url 'estudiante_delete' estudiante.pk %}" class="btn-danger">Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

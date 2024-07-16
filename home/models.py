@@ -9,7 +9,6 @@ class CustomUser(AbstractUser):
     TIPO_CHOICES = [
         ('administrador', 'Administrador'),
         ('docente', 'Docente'),
-        ('alumno', 'Alumno'),
         ('apoderado', 'Apoderado'),
         ('psicologo', 'Psicólogo'),
     ]
