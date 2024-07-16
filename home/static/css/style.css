@@ -49,7 +49,7 @@ nav ul li a:hover {
     box-sizing: border-box;
 }
 
-.container, .login-container, .signup-container {
+.container, .login-container, .signup-container, .crud-container {
     text-align: center;
     background-color: #ffffff;
     padding: 20px;
@@ -151,4 +151,43 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.confirm-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirm-delete button {
+    margin: 10px;
+}
+
+.confirm-delete a {
+    margin: 10px;
+}
+
+.course-list {
+    margin-top: 20px;
+}
+
+.course-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-details {
+    flex-grow: 1;
+}
+
+.course-actions {
+    margin-left: 20px;
+    display: flex;
+    gap: 10px;
 }

@@ -2,8 +2,11 @@
 {% if user.is_authenticated %}
 <nav>
     <ul>
+        <li><a href="{% url 'home' %}">Inicio</a></li>
+
         {% if user.tipo == 'administrador' %}
             <li><a href="{% url 'signup' %}">Crear Usuario</a></li>
+            <li><a href="{% url 'curso_list' %}">Cursos</a></li>
         {% endif %}
         <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
     </ul>

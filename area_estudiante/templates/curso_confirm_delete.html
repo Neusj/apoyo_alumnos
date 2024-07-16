@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Curso{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    <h3>¿Estás seguro de que quieres eliminar este curso?</h3>
+    <form method="post" class="confirm-delete-form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="width: auto;">Eliminar</button>
+        <a href="{% url 'curso_list' %}" class="btn btn-secondary" style="width: auto;">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
