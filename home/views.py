@@ -1,8 +1,10 @@
 from django import views
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import LoginView, PasswordResetView
 from django.views.generic import CreateView
+
+from home.models import CustomUser
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPasswordResetForm
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -10,10 +12,10 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 class Home(views.View):
     def get(self, request):
         user = request.user
-        message = 'Nueva plataforma de apoyo al estudiante'
+        message = 'Nueva plataforma de apoyo al usuario'
         is_login = False
         if user.is_authenticated:
-            message = f'¡Hola! {user.username}'
+            message = f'¡Hola! {user.first_name} {user.last_name}'
             is_login = True
 
         return render(
@@ -40,6 +42,31 @@ class SignUpView(UserPassesTestMixin, CreateView):
 
     def handle_no_permission(self):
         return redirect('home')
+
+
+def usuario_list(request):
+    usuarios = CustomUser.objects.all()
+    return render(request, 'usuario_list.html', {'usuarios': usuarios})
+
+def usuario_update(request, pk):
+    usuario = get_object_or_404(CustomUser, pk=pk)
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('usuario_list')
+    else:
+        form = CustomUserCreationForm(instance=usuario)
+    return render(request, 'signup.html', {'form': form, 'edit_view': True})
+
+def usuario_delete(request, pk):
+    usuario = get_object_or_404(CustomUser, pk=pk)
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('usuario_list')
+    return render(request, 'usuario_confirm_delete.html', {'usuario': usuario})
+
+
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm

@@ -5,7 +5,7 @@
         <li><a href="{% url 'home' %}">Inicio</a></li>
 
         {% if user.tipo == 'administrador' %}
-            <li><a href="{% url 'signup' %}">Crear Usuario</a></li>
+            <li><a href="{% url 'usuario_list' %}">Usuarios</a></li>
             <li><a href="{% url 'estudiante_list' %}">Estudiante</a></li>
             <li><a href="{% url 'curso_list' %}">Cursos</a></li>
             <li><a href="{% url 'tipo_conducta_list' %}">Conductas</a></li>

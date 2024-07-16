@@ -32,12 +32,23 @@ from area_estudiante.views import (
     tipo_conducta_list,
     tipo_conducta_update
 )
-from home.views import CustomLoginView, CustomPasswordResetView, Home, SignUpView
+from home.views import (
+    CustomLoginView,
+    CustomPasswordResetView,
+    Home,
+    SignUpView,
+    usuario_list,
+    usuario_update,
+    usuario_delete
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
 
+    path('usuarios/', usuario_list, name='usuario_list'),
+    path('usuarios/update/<str:pk>/', usuario_update, name='usuario_update'),
+    path('usuarios/delete/<str:pk>/', usuario_delete, name='usuario_delete'),
     path('crear_usuario/', SignUpView.as_view(), name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

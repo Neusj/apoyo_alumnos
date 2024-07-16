@@ -12,7 +12,7 @@
     <div class="course-list">
         {% for estudiante in estudiantes %}
             <div class="course-item">
-                <span class="course-details">{{ estudiante.nombre }}</span>
+                <span class="course-details">{{estudiante.rut}} {{estudiante.nombre}} {{estudiante.primer_apellido}}</span>
                 <div class="course-actions">
                     <a href="{% url 'estudiante_update' estudiante.pk %}" class="btn-primary">Editar</a>
                     <a href="{% url 'estudiante_delete' estudiante.pk %}" class="btn-danger">Eliminar</a>

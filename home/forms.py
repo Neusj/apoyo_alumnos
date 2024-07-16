@@ -10,7 +10,12 @@ from home.models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'tipo', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')
+
+class CustomUserEditForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'first_name', 'last_name')
 
 class CustomAuthenticationForm(AuthenticationForm):
     class Meta:
