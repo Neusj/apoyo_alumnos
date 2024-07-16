@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
+from home.models import CustomUser
 from .models import Apoderado
 from .forms import ApoderadoForm
 from django.contrib import messages
@@ -14,7 +16,14 @@ def apoderado_create(request):
     if request.method == 'POST':
         form = ApoderadoForm(request.POST)
         if form.is_valid():
-            form.save()
+            apoderado = form.save()
+            CustomUser.objects.create_user(
+                username=apoderado.rut,
+                first_name=apoderado.nombre,
+                last_name=apoderado.primer_apellido,
+                password=apoderado.rut,
+                tipo='apoderado'
+            )
             return redirect('apoderado_list')
     else:
         form = ApoderadoForm()
