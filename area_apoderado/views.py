@@ -1,17 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from home.models import CustomUser
+from home.utils.utils import is_administrador
 from .models import Apoderado
 from .forms import ApoderadoForm
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.contrib.auth.decorators import user_passes_test
+
 
 # Create your views here.
 
+@user_passes_test(is_administrador, login_url='home')
 def apoderado_list(request):
     apoderados = Apoderado.objects.all()
     return render(request, 'apoderado_list.html', {'apoderados': apoderados})
 
+@user_passes_test(is_administrador, login_url='home')
 def apoderado_create(request):
     if request.method == 'POST':
         form = ApoderadoForm(request.POST)
@@ -29,6 +34,7 @@ def apoderado_create(request):
         form = ApoderadoForm()
     return render(request, 'apoderado_form.html', {'form': form})
 
+@user_passes_test(is_administrador, login_url='home')
 def apoderado_update(request, pk):
     apoderado = get_object_or_404(Apoderado, pk=pk)
     if request.method == 'POST':

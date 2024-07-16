@@ -3,8 +3,10 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import LoginView, PasswordResetView
 from django.views.generic import CreateView
+from django.contrib.auth.decorators import user_passes_test
 
 from home.models import CustomUser
+from home.utils.utils import is_administrador
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPasswordResetForm
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -44,10 +46,12 @@ class SignUpView(UserPassesTestMixin, CreateView):
         return redirect('home')
 
 
+@user_passes_test(is_administrador, login_url='home')
 def usuario_list(request):
     usuarios = CustomUser.objects.all()
     return render(request, 'usuario_list.html', {'usuarios': usuarios})
 
+@user_passes_test(is_administrador, login_url='home')
 def usuario_update(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
@@ -65,7 +69,6 @@ def usuario_delete(request, pk):
         usuario.delete()
         return redirect('usuario_list')
     return render(request, 'usuario_confirm_delete.html', {'usuario': usuario})
-
 
 
 class CustomLoginView(LoginView):

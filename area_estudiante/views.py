@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from home.utils.utils import is_administrador
 from .models import Curso, TipoConducta, Estudiante
 from .forms import CursoForm, TipoConductaForm, EstudianteForm
+from django.contrib.auth.decorators import user_passes_test
 
 # Curso
+@user_passes_test(is_administrador, login_url='home')
 def curso_list(request):
     cursos = Curso.objects.all()
     return render(request, 'curso_list.html', {'cursos': cursos})
 
+@user_passes_test(is_administrador, login_url='home')
 def curso_create(request):
     if request.method == 'POST':
         form = CursoForm(request.POST)
@@ -17,6 +21,7 @@ def curso_create(request):
         form = CursoForm()
     return render(request, 'curso_form.html', {'form': form})
 
+@user_passes_test(is_administrador, login_url='home')
 def curso_update(request, pk):
     curso = get_object_or_404(Curso, pk=pk)
     if request.method == 'POST':
@@ -36,10 +41,12 @@ def curso_delete(request, pk):
     return render(request, 'curso_confirm_delete.html', {'curso': curso})
 
 # TipoConducta
+@user_passes_test(is_administrador, login_url='home')
 def tipo_conducta_list(request):
     tipo_conductas = TipoConducta.objects.all()
     return render(request, 'tipo_conducta_list.html', {'tipo_conductas': tipo_conductas})
 
+@user_passes_test(is_administrador, login_url='home')
 def tipo_conducta_create(request):
     if request.method == 'POST':
         form = TipoConductaForm(request.POST)
@@ -50,6 +57,7 @@ def tipo_conducta_create(request):
         form = TipoConductaForm()
     return render(request, 'tipo_conducta_form.html', {'form': form})
 
+@user_passes_test(is_administrador, login_url='home')
 def tipo_conducta_update(request, pk):
     tipo_conducta = get_object_or_404(TipoConducta, pk=pk)
     if request.method == 'POST':
@@ -69,10 +77,12 @@ def tipo_conducta_delete(request, pk):
     return render(request, 'tipo_conducta_confirm_delete.html', {'tipo_conducta': tipo_conducta})
 
 # Estudiante
+@user_passes_test(is_administrador, login_url='home')
 def estudiante_list(request):
     estudiantes = Estudiante.objects.all()
     return render(request, 'estudiante_list.html', {'estudiantes': estudiantes})
 
+@user_passes_test(is_administrador, login_url='home')
 def estudiante_create(request):
     if request.method == 'POST':
         form = EstudianteForm(request.POST)
@@ -83,6 +93,7 @@ def estudiante_create(request):
         form = EstudianteForm()
     return render(request, 'estudiante_form.html', {'form': form})
 
+@user_passes_test(is_administrador, login_url='home')
 def estudiante_update(request, pk):
     estudiante = get_object_or_404(Estudiante, pk=pk)
     if request.method == 'POST':
