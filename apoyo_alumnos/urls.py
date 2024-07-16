@@ -17,7 +17,21 @@ from django.contrib import admin
 from django.urls import path
 
 from django.contrib.auth import views as auth_views
-from area_estudiante.views import curso_create, curso_delete, curso_list, curso_update, estudiante_create, estudiante_delete, estudiante_list, estudiante_update, tipo_conducta_create, tipo_conducta_delete, tipo_conducta_list, tipo_conducta_update
+from area_apoderado.views import apoderado_create, apoderado_list, apoderado_delete, apoderado_update
+from area_estudiante.views import (
+    curso_create,
+    curso_delete,
+    curso_list,
+    curso_update,
+    estudiante_create,
+    estudiante_delete,
+    estudiante_list,
+    estudiante_update,
+    tipo_conducta_create,
+    tipo_conducta_delete,
+    tipo_conducta_list,
+    tipo_conducta_update
+)
 from home.views import CustomLoginView, CustomPasswordResetView, Home, SignUpView
 
 urlpatterns = [
@@ -44,7 +58,13 @@ urlpatterns = [
     # Estudiante
     path('estudiantes/', estudiante_list, name='estudiante_list'),
     path('estudiantes/create/', estudiante_create, name='estudiante_create'),
-    path('estudiantes/update/<int:pk>/', estudiante_update, name='estudiante_update'),
-    path('estudiantes/delete/<int:pk>/', estudiante_delete, name='estudiante_delete'),
+    path('estudiantes/update/<str:pk>/', estudiante_update, name='estudiante_update'),
+    path('estudiantes/delete/<str:pk>/', estudiante_delete, name='estudiante_delete'),
+    
+    # Apoderado
+    path('apoderados/', apoderado_list, name='apoderado_list'),
+    path('apoderados/create/', apoderado_create, name='apoderado_create'),
+    path('apoderados/update/<str:pk>/', apoderado_update, name='apoderado_update'),
+    path('apoderados/delete/<str:pk>/', apoderado_delete, name='apoderado_delete'),
 
 ]

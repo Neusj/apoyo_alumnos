@@ -27,7 +27,12 @@ class Estudiante(models.Model):
     segundo_apellido = models.CharField(max_length=50)
     id_curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     apoderado = models.ForeignKey(Apoderado, on_delete=models.CASCADE)
-    tipo_conducta = models.ForeignKey(TipoConducta, on_delete=models.CASCADE)
+    tipo_conducta = models.ForeignKey(
+        TipoConducta,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return f'{self.rut} {self.nombre} {self.primer_apellido}'

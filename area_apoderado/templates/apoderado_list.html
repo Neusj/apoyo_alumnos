@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Apoderado{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    <h2>Lista de Apoderados</h2>
+    <a href="{% url 'apoderado_create' %}" class="btn btn-primary">Crear Apoderado</a>
+    <div class="course-list">
+        {% for apoderado in apoderados %}
+            <div class="course-item">
+                <span class="course-details">{{apoderado.rut}} {{apoderado.nombre}} {{apoderado.primer_apellido}}</span>
+                <div class="course-actions">
+                    <a href="{% url 'apoderado_update' apoderado.pk %}" class="btn-primary">Editar</a>
+                    <a href="{% url 'apoderado_delete' apoderado.pk %}" class="btn-danger">Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
