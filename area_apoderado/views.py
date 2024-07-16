@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Apoderado
 from .forms import ApoderadoForm
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 
@@ -32,6 +34,11 @@ def apoderado_update(request, pk):
 def apoderado_delete(request, pk):
     apoderado = get_object_or_404(Apoderado, pk=pk)
     if request.method == 'POST':
-        apoderado.delete()
-        return redirect('apoderado_list')
+        try:
+            apoderado.delete()
+            messages.success(request, "Apoderado eliminado correctamente.")
+            return redirect('apoderado_list')
+        except ValidationError as e:
+            messages.error(request, str(e))
+            return redirect('apoderado_list')
     return render(request, 'apoderado_confirm_delete.html', {'apoderado': apoderado})

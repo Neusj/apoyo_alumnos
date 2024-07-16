@@ -7,6 +7,13 @@
     {% include 'nav.html' %}
 {% endblock %}
 <div class="crud-container">
+    {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
     <h2>Lista de Apoderados</h2>
     <a href="{% url 'apoderado_create' %}" class="btn btn-primary">Crear Apoderado</a>
     <div class="course-list">

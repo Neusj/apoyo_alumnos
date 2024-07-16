@@ -191,3 +191,26 @@ footer {
     display: flex;
     gap: 10px;
 }
+
+.messages {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.message.error {
+    background-color: #dc3545;
+}
+
+.message.success {
+    background-color: #28a745;
+}
+
