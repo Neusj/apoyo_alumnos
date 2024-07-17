@@ -18,10 +18,12 @@
                     {{usuario.last_name}} - 
                     {{ usuario.tipo}}
                 </span>
-                <div class="course-actions">
-                    <a href="{% url 'usuario_update' usuario.pk %}" class="btn-primary">Editar</a>
-                    <a href="{% url 'usuario_delete' usuario.pk %}" class="btn-danger">Eliminar</a>
-                </div>
+                {% if usuario.username != '26711486-2' %}
+                    <div class="course-actions">
+                        <a href="{% url 'usuario_update' usuario.pk %}" class="btn-primary">Editar</a>
+                        <a href="{% url 'usuario_delete' usuario.pk %}" class="btn-danger">Eliminar</a>
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

@@ -66,7 +66,8 @@ def usuario_update(request, pk):
 def usuario_delete(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
-        usuario.delete()
+        if usuario.username != '26711486-2':
+            usuario.delete()
         return redirect('usuario_list')
     return render(request, 'usuario_confirm_delete.html', {'usuario': usuario})
 
