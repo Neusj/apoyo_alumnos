@@ -10,7 +10,11 @@
             <li><a href="{% url 'curso_list' %}">Cursos</a></li>
             <li><a href="{% url 'tipo_conducta_list' %}">Conductas</a></li>
             <li><a href="{% url 'apoderado_list' %}">Apoderados</a></li>
+            <li><a href="{% url 'docente_list' %}">Docentes</a></li>
         {% elif user.tipo == 'apoderado' %}
+            <li><a href="#">Ver Informe</a></li>
+            <li><a href="#">Cargar Información</a></li>
+        {% elif user.tipo == 'docente' %}
             <li><a href="#">Ver Informe</a></li>
             <li><a href="#">Cargar Información</a></li>
         {% endif %}

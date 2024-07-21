@@ -3,7 +3,6 @@ from django.db import models
 from area_estudiante.models import Curso
 
 
-
 class Docente(models.Model):
     rut = models.CharField(max_length=12, primary_key=True)
     nombre = models.CharField(max_length=50)

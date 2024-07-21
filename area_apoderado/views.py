@@ -9,8 +9,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import user_passes_test
 
 
-# Create your views here.
-
 @user_passes_test(is_administrador, login_url='home')
 def apoderado_list(request):
     apoderados = Apoderado.objects.all()
