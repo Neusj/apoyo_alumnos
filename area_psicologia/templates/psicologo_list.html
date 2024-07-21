@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Psicólogo{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <h2>Lista de Psicólogos</h2>
+    <a href="{% url 'psicologo_create' %}" class="btn btn-primary">Crear Psicólogo</a>
+    <div class="course-list">
+        {% for psicologo in psicologos %}
+            <div class="course-item">
+                <span class="course-details">{{psicologo.rut}} {{psicologo.nombre}} {{psicologo.primer_apellido}}</span>
+                <div class="course-actions">
+                    <a href="{% url 'psicologo_update' psicologo.pk %}" class="btn-primary">Editar</a>
+                    <a href="{% url 'psicologo_delete' psicologo.pk %}" class="btn-danger">Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

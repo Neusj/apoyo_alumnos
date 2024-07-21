@@ -33,6 +33,7 @@ from area_estudiante.views import (
     tipo_conducta_list,
     tipo_conducta_update
 )
+from area_psicologia.views import psicologo_list, psicologo_create, psicologo_delete, psicologo_update
 from home.views import (
     CustomLoginView,
     CustomPasswordResetView,
@@ -84,5 +85,11 @@ urlpatterns = [
     path('docentes/create/', docente_create, name='docente_create'),
     path('docentes/update/<str:pk>/', docente_update, name='docente_update'),
     path('docentes/delete/<str:pk>/', docente_delete, name='docente_delete'),
+    
+    # psicologo
+    path('psicologos/', psicologo_list, name='psicologo_list'),
+    path('psicologos/create/', psicologo_create, name='psicologo_create'),
+    path('psicologos/update/<str:pk>/', psicologo_update, name='psicologo_update'),
+    path('psicologos/delete/<str:pk>/', psicologo_delete, name='psicologo_delete'),
 
 ]
