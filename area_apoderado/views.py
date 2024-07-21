@@ -19,6 +19,11 @@ def apoderado_create(request):
     if request.method == 'POST':
         form = ApoderadoForm(request.POST)
         if form.is_valid():
+            rut = form.cleaned_data.get('rut')
+            if CustomUser.objects.filter(username=rut).exists():
+                messages.error(request, 'Ya existe un usuario con este RUT.')
+                return render(request, 'apoderado_form.html', {'form': form})
+            
             apoderado = form.save()
             CustomUser.objects.create_user(
                 username=apoderado.rut,

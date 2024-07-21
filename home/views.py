@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 class Home(views.View):
     def get(self, request):
         user = request.user
-        message = 'Nueva plataforma de apoyo al usuario'
+        message = 'Nueva plataforma de apoyo al alumno'
         is_login = False
         if user.is_authenticated:
             message = f'¡Hola! {user.first_name} {user.last_name}'
