@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.forms import ValidationError
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
-from area_docente.forms import DocenteForm
-from area_docente.models import Docente
+from area_docente.forms import DatosAlumnoForm, DocenteForm
+from area_docente.models import DatosAlumno, Docente
 from home.models import CustomUser
 from home.utils.utils import is_administrador
 
@@ -61,3 +61,38 @@ def docente_delete(request, pk):
             return redirect('docente_list')
     return render(request, 'docente_confirm_delete.html', {'docente': docente})
 
+
+
+def datos_alumno_list(request):
+    datos_alumno = DatosAlumno.objects.all()
+    return render(request, 'datos_alumno_list.html', {'datos_alumno': datos_alumno})
+
+
+def datos_alumno_create(request):
+    if request.method == 'POST':
+        form = DatosAlumnoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('datos_alumno_list')
+    else:
+        form = DatosAlumnoForm()
+    return render(request, 'datos_alumno_form.html', {'form': form})
+
+
+def datos_alumno_update(request, pk):
+    datos_alumno = get_object_or_404(DatosAlumno, pk=pk)
+    if request.method == 'POST':
+        form = DatosAlumnoForm(request.POST, instance=datos_alumno)
+        if form.is_valid():
+            form.save()
+            return redirect('datos_alumno_list')
+    else:
+        form = DatosAlumnoForm(instance=datos_alumno)
+    return render(request, 'datos_alumno_form.html', {'form': form})
+
+def datos_alumno_delete(request, pk):
+    datos_alumno = get_object_or_404(DatosAlumno, pk=pk)
+    if request.method == 'POST':
+        datos_alumno.delete()
+        return redirect('datos_alumno_list')
+    return render(request, 'datos_alumno_confirm_delete.html', {'datos_alumno': datos_alumno})

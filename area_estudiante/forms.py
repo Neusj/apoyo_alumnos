@@ -14,4 +14,5 @@ class TipoConductaForm(forms.ModelForm):
 class EstudianteForm(forms.ModelForm):
     class Meta:
         model = Estudiante
-        fields = ['rut', 'nombre', 'primer_apellido', 'segundo_apellido', 'id_curso', 'apoderado', 'tipo_conducta']
+        fields = ['rut', 'nombre', 'primer_apellido', 'segundo_apellido', 'id_curso', 'apoderado']
+

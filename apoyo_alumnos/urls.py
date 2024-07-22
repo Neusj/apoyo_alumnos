@@ -18,7 +18,17 @@ from django.urls import path
 
 from django.contrib.auth import views as auth_views
 from area_apoderado.views import apoderado_create, apoderado_list, apoderado_delete, apoderado_update
-from area_docente.views import docente_list, docente_create, docente_delete, docente_update
+from area_docente.views import (
+    docente_list,
+    docente_create,
+    docente_delete,
+    docente_update,
+    datos_alumno_create,
+    datos_alumno_delete,
+    datos_alumno_list,
+    datos_alumno_update
+)
+
 from area_estudiante.views import (
     curso_create,
     curso_delete,
@@ -91,5 +101,12 @@ urlpatterns = [
     path('psicologos/create/', psicologo_create, name='psicologo_create'),
     path('psicologos/update/<str:pk>/', psicologo_update, name='psicologo_update'),
     path('psicologos/delete/<str:pk>/', psicologo_delete, name='psicologo_delete'),
+    
+    
+    # datos_alumnos
+    path('datos_alumno/', datos_alumno_list, name='datos_alumno_list'),
+    path('datos_alumno/create/', datos_alumno_create, name='datos_alumno_create'),
+    path('datos_alumno/update/<str:pk>/', datos_alumno_update, name='datos_alumno_update'),
+    path('datos_alumno/delete/<str:pk>/', datos_alumno_delete, name='datos_alumno_delete'),
 
 ]

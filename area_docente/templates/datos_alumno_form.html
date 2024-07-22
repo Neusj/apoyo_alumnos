@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Datos{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h3>{% if form.instance.pk %}Editar Datos{% else %}Crear Datos{% endif %}</h3>
+    <form method="post" class="crud-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" style="width: auto;">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+    <a href="{% url 'datos_alumno_list' %}" class="btn btn-secondary" style="width: auto;">Volver</a>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Datos{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    <h3>¿Estás seguro/a de que quieres eliminar este Datos?</h3>
+    <form method="post" class="confirm-delete-form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="width: auto;">Eliminar</button>
+        <a href="{% url 'datos_alumno_list' %}" class="btn btn-secondary" style="width: auto;">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

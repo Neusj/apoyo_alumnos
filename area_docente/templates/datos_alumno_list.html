@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Datos{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h2>Lista de Datos</h2>
+    <a href="{% url 'datos_alumno_create' %}" class="btn btn-primary">Crear Datos</a>
+    <div class="course-list">
+        {% for datos in datos_alumno %}
+            <div class="course-item">
+                <span class="course-details">{{datos.estudiante}} {{datos.tipo_conducta}}</span>
+                <div class="course-actions">
+                    <a href="{% url 'datos_alumno_update' datos.pk %}" class="btn-primary">Editar</a>
+                    <a href="{% url 'datos_alumno_delete' datos.pk %}" class="btn-danger">Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
