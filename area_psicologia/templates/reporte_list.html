@@ -20,8 +20,10 @@
             <div class="course-item">
                 <span class="course-details">{{reporte.estudiante}}</span>
                 <div class="course-actions">
-                    <a href="{% url 'reporte_update' reporte.pk %}" class="btn-primary">Editar</a>
-                    <a href="{% url 'reporte_delete' reporte.pk %}" class="btn-danger">Eliminar</a>
+                    {% if user.tipo == 'psicologo' %}
+                        <a href="{% url 'reporte_update' reporte.pk %}" class="btn-primary">Editar</a>
+                        <a href="{% url 'reporte_delete' reporte.pk %}" class="btn-danger">Eliminar</a>
+                    {% endif %}
                     <a href="{% url 'reporte_descargar' reporte.pk %}" class="btn-danger">Descargar</a>
                 </div>
             </div>

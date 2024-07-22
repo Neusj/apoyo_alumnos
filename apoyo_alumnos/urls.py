@@ -122,7 +122,7 @@ urlpatterns = [
     path('datos_alumno/delete/<str:pk>/', datos_alumno_delete, name='datos_alumno_delete'),
     
     
-    # datos_alumnos
+    # reportes
     path('reporte/', reporte_list, name='reporte_list'),
     path('reporte/create/<int:id_datos_alumno>', reporte_create, name='reporte_create'),
     path('reporte/ver/<str:pk>/', reporte_descargar, name='reporte_descargar'),
