@@ -24,7 +24,7 @@
                         <a href="{% url 'reporte_update' reporte.pk %}" class="btn-primary">Editar</a>
                         <a href="{% url 'reporte_delete' reporte.pk %}" class="btn-danger">Eliminar</a>
                     {% endif %}
-                    <a href="{% url 'reporte_descargar' reporte.pk %}" class="btn-danger">Descargar</a>
+                    <a href="{% url 'generar_reporte' reporte.pk %}" class="btn-danger">Descargar</a>
                 </div>
             </div>
         {% endfor %}

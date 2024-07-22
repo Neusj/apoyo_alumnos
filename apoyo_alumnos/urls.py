@@ -44,7 +44,10 @@ from area_estudiante.views import (
     tipo_conducta_list,
     tipo_conducta_update
 )
+
+
 from area_psicologia.views import (
+    generar_reporte_vista,
     psicologo_list,
     psicologo_create,
     psicologo_delete,
@@ -52,7 +55,6 @@ from area_psicologia.views import (
     reporte_list,
     reporte_create,
     reporte_delete,
-    reporte_descargar,
     reporte_update
 )
 from home.views import (
@@ -125,8 +127,9 @@ urlpatterns = [
     # reportes
     path('reporte/', reporte_list, name='reporte_list'),
     path('reporte/create/<int:id_datos_alumno>', reporte_create, name='reporte_create'),
-    path('reporte/ver/<str:pk>/', reporte_descargar, name='reporte_descargar'),
     path('reporte/update/<str:pk>/', reporte_update, name='reporte_update'),
     path('reporte/delete/<str:pk>/', reporte_delete, name='reporte_delete'),
+
+    path('generar_reporte/<str:pk>/', generar_reporte_vista, name='generar_reporte'),
 
 ]

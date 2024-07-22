@@ -30,3 +30,7 @@ class Estudiante(models.Model):
 
     def __str__(self):
         return f'{self.rut} {self.nombre} {self.primer_apellido}'
+    
+    @property
+    def nombre_completo(self):
+        return f"{self.nombre} {self.primer_apellido} "

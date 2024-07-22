@@ -16,3 +16,7 @@ class Apoderado(models.Model):
         if self.estudiante_set.exists():
             raise ValidationError("No se puede borrar el apoderado porque hay estudiantes asociados.")
         super().delete(*args, **kwargs)
+
+    @property
+    def nombre_completo(self):
+        return f"{self.nombre} {self.primer_apellido} "

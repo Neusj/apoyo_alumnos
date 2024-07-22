@@ -3,9 +3,11 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, redirect, render
 
+from area_apoderado.models import Apoderado
 from area_docente.models import DatosAlumno
 from area_psicologia.forms import PsicologoForm, ReporteForm
 from area_psicologia.models import Psicologo, Reporte
+from area_psicologia.utils import generar_reporte
 from home.models import CustomUser
 from home.utils.utils import is_administrador
 
@@ -64,12 +66,14 @@ def psicologo_delete(request, pk):
 
 
 def reporte_list(request):
+    usuario = request.user
+    apoderado = Apoderado.objects.filter(rut=usuario.username)
     reportes = Reporte.objects.all()
+    if usuario.tipo == 'apoderado':
+        apoderado = apoderado.first()
+        reportes = reportes.filter(estudiante__apoderado__rut=apoderado.rut)
     return render(request, 'reporte_list.html', {'reportes': reportes})
 
-def reporte_descargar(request):
-    reportes = Reporte.objects.all()
-    return render(request, 'reporte_list.html', {'reportes': reportes})
 
 def reporte_create(request, id_datos_alumno):
 
@@ -114,3 +118,9 @@ def reporte_delete(request, pk):
             messages.error(request, str(e))
             return redirect('reporte_list')
     return render(request, 'reporte_confirm_delete.html', {'reporte': reporte})
+
+
+def generar_reporte_vista(request, pk):
+    reporte = get_object_or_404(Reporte, pk=pk)
+
+    return generar_reporte(reporte)
