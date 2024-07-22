@@ -22,5 +22,7 @@
         <p><strong>Descripción:</strong> {{ datos_alumno.descripcion }}</p>
     </div>
     <a href="{% url 'datos_alumno_list' %}" class="btn btn-secondary" style="width: auto;">Volver</a>
+    <a href="{% url 'reporte_create' datos_alumno.pk %}" class="btn btn-primary" style="width: auto;">Crear reporte</a>
+
 </div>
 {% endblock %}

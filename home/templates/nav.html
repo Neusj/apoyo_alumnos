@@ -19,7 +19,7 @@
             <li><a href="{% url 'datos_alumno_list' %}">Datos Alumno</a></li>
         {% elif user.tipo == 'psicologo' %}
             <li><a href="{% url 'datos_alumno_list' %}">Ver datos alumnos</a></li>
-            <li><a href="#">Crear reporte</a></li>
+            <li><a href="{% url 'reporte_list' %}">Ver Reportes</a></li>
         {% endif %}
         
         <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>

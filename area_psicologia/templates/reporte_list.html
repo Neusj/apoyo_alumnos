@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Reporte{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <h2>Lista de Reportes</h2>
+    <div class="course-list">
+        {% for reporte in reportes %}
+            <div class="course-item">
+                <span class="course-details">{{reporte.estudiante}}</span>
+                <div class="course-actions">
+                    <a href="{% url 'reporte_update' reporte.pk %}" class="btn-primary">Editar</a>
+                    <a href="{% url 'reporte_delete' reporte.pk %}" class="btn-danger">Eliminar</a>
+                    <a href="{% url 'reporte_descargar' reporte.pk %}" class="btn-danger">Descargar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

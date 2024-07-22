@@ -13,7 +13,12 @@ class Psicologo(models.Model):
 
 class Reporte(models.Model):
     id = models.AutoField(primary_key=True)
-    rut_psicologo = models.ForeignKey(Psicologo, on_delete=models.CASCADE)
-    rut_estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+    psicologo = models.ForeignKey(Psicologo, on_delete=models.CASCADE)
+    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
     recomendacion = models.TextField()
-    estado = models.CharField(max_length=20)
+    estado = models.CharField(max_length=100)
+    fecha_creacion = models.DateTimeField(auto_now_add=True, null=True, )
+
+    def __str__(self):
+        estudiante = self.estudiante
+        return f"Reporte {estudiante.nombre} - {self.estudiante.primer_apellido}"

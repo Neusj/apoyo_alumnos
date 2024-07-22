@@ -3,8 +3,9 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, redirect, render
 
-from area_psicologia.forms import PsicologoForm
-from area_psicologia.models import Psicologo
+from area_docente.models import DatosAlumno
+from area_psicologia.forms import PsicologoForm, ReporteForm
+from area_psicologia.models import Psicologo, Reporte
 from home.models import CustomUser
 from home.utils.utils import is_administrador
 
@@ -60,3 +61,56 @@ def psicologo_delete(request, pk):
             messages.error(request, str(e))
             return redirect('psicologo_list')
     return render(request, 'psicologo_confirm_delete.html', {'psicologo': psicologo})
+
+
+def reporte_list(request):
+    reportes = Reporte.objects.all()
+    return render(request, 'reporte_list.html', {'reportes': reportes})
+
+def reporte_descargar(request):
+    reportes = Reporte.objects.all()
+    return render(request, 'reporte_list.html', {'reportes': reportes})
+
+def reporte_create(request, id_datos_alumno):
+
+    datos_alumno = DatosAlumno.objects.get(pk=id_datos_alumno)
+    if request.method == 'POST':
+        form = ReporteForm(request.POST)
+        if form.is_valid():
+
+            psicologo = Psicologo.objects.get(rut=request.user)
+            reporte = form.save(commit=False)
+            reporte.psicologo = psicologo  
+            reporte.estudiante = datos_alumno.estudiante
+            reporte = form.save()
+            return redirect('reporte_list')
+    else:
+        form = ReporteForm()
+        context = {
+            'form': form,
+            'datos_alumno': datos_alumno
+        }
+    return render(request, 'reporte_form.html', context)
+
+def reporte_update(request, pk):
+    reporte = get_object_or_404(Reporte, pk=pk)
+    if request.method == 'POST':
+        form = ReporteForm(request.POST, instance=reporte)
+        if form.is_valid():
+            form.save()
+            return redirect('reporte_list')
+    else:
+        form = ReporteForm(instance=reporte)
+    return render(request, 'reporte_form.html', {'form': form})
+
+def reporte_delete(request, pk):
+    reporte = get_object_or_404(Reporte, pk=pk)
+    if request.method == 'POST':
+        try:
+            reporte.delete()
+            messages.success(request, "Reporte eliminado correctamente.")
+            return redirect('reporte_list')
+        except ValidationError as e:
+            messages.error(request, str(e))
+            return redirect('reporte_list')
+    return render(request, 'reporte_confirm_delete.html', {'reporte': reporte})

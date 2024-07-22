@@ -44,7 +44,17 @@ from area_estudiante.views import (
     tipo_conducta_list,
     tipo_conducta_update
 )
-from area_psicologia.views import psicologo_list, psicologo_create, psicologo_delete, psicologo_update
+from area_psicologia.views import (
+    psicologo_list,
+    psicologo_create,
+    psicologo_delete,
+    psicologo_update,
+    reporte_list,
+    reporte_create,
+    reporte_delete,
+    reporte_descargar,
+    reporte_update
+)
 from home.views import (
     CustomLoginView,
     CustomPasswordResetView,
@@ -110,5 +120,13 @@ urlpatterns = [
     path('datos_alumno/ver/<str:pk>/', datos_alumno_ver, name='datos_alumno_ver'),
     path('datos_alumno/update/<str:pk>/', datos_alumno_update, name='datos_alumno_update'),
     path('datos_alumno/delete/<str:pk>/', datos_alumno_delete, name='datos_alumno_delete'),
+    
+    
+    # datos_alumnos
+    path('reporte/', reporte_list, name='reporte_list'),
+    path('reporte/create/<int:id_datos_alumno>', reporte_create, name='reporte_create'),
+    path('reporte/ver/<str:pk>/', reporte_descargar, name='reporte_descargar'),
+    path('reporte/update/<str:pk>/', reporte_update, name='reporte_update'),
+    path('reporte/delete/<str:pk>/', reporte_delete, name='reporte_delete'),
 
 ]
