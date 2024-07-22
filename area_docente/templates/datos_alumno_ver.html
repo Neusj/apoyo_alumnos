@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Datos del Alumno{% endblock %}
+
+{% block content %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+<div class="crud-container">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h3>Datos del Alumno</h3>
+    <div class="crud-details">
+        <p><strong>Estudiante:</strong> {{ datos_alumno.estudiante }}</p>
+        <p><strong>Docente:</strong> {{ datos_alumno.docente }}</p>
+        <p><strong>Conducta:</strong> {{ datos_alumno.tipo_conducta }}</p>
+        <p><strong>Descripción:</strong> {{ datos_alumno.descripcion }}</p>
+    </div>
+    <a href="{% url 'datos_alumno_list' %}" class="btn btn-secondary" style="width: auto;">Volver</a>
+</div>
+{% endblock %}

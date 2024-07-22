@@ -26,7 +26,8 @@ from area_docente.views import (
     datos_alumno_create,
     datos_alumno_delete,
     datos_alumno_list,
-    datos_alumno_update
+    datos_alumno_update,
+    datos_alumno_ver
 )
 
 from area_estudiante.views import (
@@ -106,6 +107,7 @@ urlpatterns = [
     # datos_alumnos
     path('datos_alumno/', datos_alumno_list, name='datos_alumno_list'),
     path('datos_alumno/create/', datos_alumno_create, name='datos_alumno_create'),
+    path('datos_alumno/ver/<str:pk>/', datos_alumno_ver, name='datos_alumno_ver'),
     path('datos_alumno/update/<str:pk>/', datos_alumno_update, name='datos_alumno_update'),
     path('datos_alumno/delete/<str:pk>/', datos_alumno_delete, name='datos_alumno_delete'),
 

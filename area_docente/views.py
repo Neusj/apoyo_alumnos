@@ -96,3 +96,8 @@ def datos_alumno_delete(request, pk):
         datos_alumno.delete()
         return redirect('datos_alumno_list')
     return render(request, 'datos_alumno_confirm_delete.html', {'datos_alumno': datos_alumno})
+
+
+def datos_alumno_ver(request, pk):
+    datos_alumno = get_object_or_404(DatosAlumno, pk=pk)
+    return render(request, 'datos_alumno_ver.html', {'datos_alumno': datos_alumno})

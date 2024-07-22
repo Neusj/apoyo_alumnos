@@ -15,14 +15,20 @@
         </div>
     {% endif %}
     <h2>Lista de Datos</h2>
-    <a href="{% url 'datos_alumno_create' %}" class="btn btn-primary">Crear Datos</a>
+    {% if user.tipo == 'docente' %}
+        <a href="{% url 'datos_alumno_create' %}" class="btn btn-primary">Crear Datos</a>
+    {% endif %}
     <div class="course-list">
         {% for datos in datos_alumno %}
             <div class="course-item">
                 <span class="course-details">{{datos.estudiante}} {{datos.tipo_conducta}}</span>
                 <div class="course-actions">
-                    <a href="{% url 'datos_alumno_update' datos.pk %}" class="btn-primary">Editar</a>
-                    <a href="{% url 'datos_alumno_delete' datos.pk %}" class="btn-danger">Eliminar</a>
+                    {% if user.tipo == 'docente' %}
+                        <a href="{% url 'datos_alumno_update' datos.pk %}" class="btn-primary">Editar</a>
+                        <a href="{% url 'datos_alumno_delete' datos.pk %}" class="btn-danger">Eliminar</a>    
+                    {% else %}
+                        <a href="{% url 'datos_alumno_ver' datos.pk %}" class="btn-primary">Ver</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
